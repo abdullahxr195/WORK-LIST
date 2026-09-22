@@ -40,6 +40,12 @@ const jobsSchema = new mongoose.Schema(
     experience: {
       type: String,
     },
+
+    number_employees:{
+      types:Number,
+      required:true,
+
+    }
   },
 
   { timestamps: true },
