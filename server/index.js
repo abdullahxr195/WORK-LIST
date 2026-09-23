@@ -3,6 +3,7 @@ import "./src/config/db.js";
 import { connectDb } from "./src/config/db.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import jobsRoutes from "../server/src/routes/jobs.Routes.js"
 
 
 dotenv.config();
@@ -10,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-
+app.use("/api" , jobsRoutes)
 connectDb();
 
 app.get("/health", (req, res) => {

@@ -41,15 +41,20 @@ const jobsSchema = new mongoose.Schema(
       type: String,
     },
 
-    number_employees:{
-      types:Number,
-      required:true,
+    number_employees: {
+      types: Number,
+      required: true,
+    },
 
-    }
+    catID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
   },
 
   { timestamps: true },
 );
 
-const Jobs = mongoose.model("Jobs", jobsSchema);
-export default Jobs;
+const Job = await mongoose.model("Jobs", jobsSchema);
+export default Job;
