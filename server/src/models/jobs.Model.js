@@ -1,5 +1,3 @@
-import { Double } from "bson";
-import { types } from "mime-types";
 import mongoose from "mongoose";
 
 const jobsSchema = new mongoose.Schema(
@@ -10,7 +8,7 @@ const jobsSchema = new mongoose.Schema(
     },
 
     time: {
-      type: Number,
+      type: String,
       required: true,
     },
 
@@ -18,13 +16,8 @@ const jobsSchema = new mongoose.Schema(
       type: Number,
     },
 
-    shift: {
-      type: String,
-      required: true,
-    },
-
     manager_number: {
-      type: Number,
+      type: String,
       required: true,
     },
 
@@ -34,7 +27,7 @@ const jobsSchema = new mongoose.Schema(
     },
 
     age: {
-      type: Number,
+      type: String,
     },
 
     experience: {
@@ -42,7 +35,7 @@ const jobsSchema = new mongoose.Schema(
     },
 
     number_employees: {
-      types: Number,
+      type: Number,
       required: true,
     },
 
@@ -56,5 +49,5 @@ const jobsSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Job = await mongoose.model("Jobs", jobsSchema);
+const Job = mongoose.model("Jobs", jobsSchema);
 export default Job;
