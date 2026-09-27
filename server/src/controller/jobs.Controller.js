@@ -4,12 +4,13 @@ import Job from "../models/jobs.Model.js";
 export const getAllJobs = async (req, res) => {
   try {
     const jobs = await Job.find().populate("catId", "manager_name,");
-    if (jobs.length) {
+    if (jobs.length === 0) {
       return res.status(200).json({ message: "No jobs yet", Jobs: [] });
     }
 
     return res.status(200).json({ message: "jobs succesffuly", jobs });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ message: "internal server error" });
   }
 };
@@ -124,7 +125,7 @@ export const getJobById = async (req, res) => {
 
 export const getJobsByCatId = async (req, res) => {
   try {
-    const { catId } = req.Params;
+    const { catId } = req.params;
 
     if (!catId) {
       return res.status(400).json({ message: "no selected item" });
@@ -140,6 +141,7 @@ export const getJobsByCatId = async (req, res) => {
 
     return res.status(200).json({ message: "found", jobs });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ message: "internal server error" });
   }
 };
