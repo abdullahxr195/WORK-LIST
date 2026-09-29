@@ -56,6 +56,7 @@ export const register = async (req, res) => {
       .json({ message: "create account successfully! please login!" });
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
+    console.log(error)
   }
 };
 
@@ -102,6 +103,7 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
+    console.log(error)
   }
 };
 
@@ -115,5 +117,6 @@ export const currentUser = async (rea, req) => {
 
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
+    console.log(error)
   }
 };
