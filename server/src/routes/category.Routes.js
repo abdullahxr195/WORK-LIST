@@ -4,7 +4,7 @@ import {protect} from "../middleware/protect.Middleware.js"
 
 const router = express.Router()
 
-router.get("/all_categories" , getAllCategories)
+router.get("/all_categories",protect , getAllCategories)
 router.post("/create-category", createCategory)
 router.get("/category/:id" ,getCategoryById)
 router.get("/category/:name",getCategoryByName)

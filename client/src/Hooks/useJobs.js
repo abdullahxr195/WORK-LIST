@@ -1,24 +1,37 @@
-import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { api } from "../api.js";
 
 export const useJobs = () => {
-  const [jobs, setJobs] = useState({});
-
-  const fetchAllJobs = async () => {
+  const [jobs, setjobs] = useState([]);
+  const [job, setjob] = useState({});
+  const fetchAlljobs = async () => {
     try {
       const res = await api.get("/all_jobs");
-      console.log("response:", res);
-      setJobs();
+
+      setjobs(res.data.jobs);
     } catch (error) {
-      toast.error("some thing wrong !");
-      console.log(error);
+      toast.error(error.response.data.message || "something went wrong");
+
+      return;
+    }
+  };
+
+  const fetchjobById = async (jobId) => {
+    try {
+      const res = await api.get(`/job/${jobId}`);
+      setjob(res.data.job);
+      toast.success("res.data.message");
+    } catch (error) {
+      toast.error(error.response.data.message || "something went wrong");
+
       return;
     }
   };
 
   useEffect(() => {
-    fetchAllJobs();
+    fetchAlljobs();
   }, []);
 
-  return { jobs, fetchAllJobs };
+  return { jobs, job, fetchjobById };
 };
