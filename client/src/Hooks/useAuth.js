@@ -48,6 +48,7 @@ export const useAuth = () => {
 
   const login = async ({ email, password }) => {
     try {
+      
       if (!email || !password) {
         toast.error("Please fill all fields ");
         return;
@@ -61,8 +62,8 @@ export const useAuth = () => {
 
       
     } catch (error) {
-      toast.error(error.response.data.message || "something went wrong");
-      console.log(error)
+      toast.error(error?.response?.data?.message || "something went wrong");
+    
       return
     }
   };

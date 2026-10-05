@@ -2,7 +2,7 @@ import User from "../models/user.Model.js";
 import bcrypt from "bcryptjs";
 export const getALLUsers = async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).select("-hashed_password")
 
     if (users.length === 0) {
       return res
@@ -56,7 +56,7 @@ export const UpdateUser = async (req, res) => {
 
     const UpdateUser = await User.findByIdAndUpdate(
       { _id: id },
-      { name, email, phoneNumber },
+      { name, email, phoneNumber , updatedAt: new Date()},
       { new: true },
     );
 
@@ -94,19 +94,17 @@ export const changePassword = async (req, res) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!passwordRegex.test(newPassword)) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "password shoud contains letters in lower case and upperaces and numbers and special charecters and at least 8 charecters length",
-        });
+      return res.status(400).json({
+        message:
+          "password shoud contains letters in lower case and upperaces and numbers and special charecters and at least 8 charecters length",
+      });
     }
 
     const new_hashed_password = await bcrypt.hash(newPassword, 10);
     //10 هي درجات التشفير او عدد خطوات التشفير
     const updatedUser = await User.findByIdAndUpdate(
       { _id: id },
-      { hashed_password: new_hashed_password },
+      { hashed_password: new_hashed_password , updatedAt: new Date() },
       { new: true },
     );
 
@@ -121,26 +119,34 @@ export const changePassword = async (req, res) => {
   }
 };
 
+export const updateUserRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { newRole } = req.body;
+    const updatedUserRole = await User.findByIdAndUpdate(
+      { _id: id },
+      { role: newRole, 
+        updatedAt: new Date()
+      },
+      { new: true },
+    );
+  } catch (error) {
+    return res.status(500).json({ message: "internal server error" });
+  }
+};
 
-export const deleteUser = async (req , res) => {
-
-try {
-    const {id} = req.params
-    if(!id){
-      return res.status(400).json({message:"No User selected"})
-
+export const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ message: "No User selected" });
     }
-    const deletedUser = await User.findByIdAndDelete({_id:id})
-    if(!deletedUser){
-
-      return res.status(400).json({message:"User did not deleted"})
+    const deletedUser = await User.findByIdAndDelete({ _id: id });
+    if (!deletedUser) {
+      return res.status(400).json({ message: "User did not deleted" });
     }
-    return res.status(200).json({message:"delete successfully"})
-
-} catch (error) {
-  return res.status(500).json({ message: "internal server error" });
-}
-
-}
- 
-
+    return res.status(200).json({ message: "delete successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "internal server error" });
+  }
+};

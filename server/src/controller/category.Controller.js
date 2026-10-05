@@ -114,7 +114,7 @@ export const updateCategory = async (req, res) => {
 
     const updateCategory = await Category.findByIdAndUpdate(
       id,
-      { name, description },
+      { name, description , updatedAt: new Date()},
       { new: true },
     );
 

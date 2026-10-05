@@ -55,8 +55,9 @@ export const register = async (req, res) => {
       .status(201)
       .json({ message: "create account successfully! please login!" });
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "internal server error" });
-    console.log(error)
+    
   }
 };
 
@@ -68,12 +69,13 @@ export const login = async (req, res) => {
         message: "Please enter your email and your password to login",
       });
     }
-    const userIsExist = await User.findOne({ email });
+    const userIsExist = await User.findOne({email});
     if (!userIsExist) {
       return res
         .status(404)
         .json({ message: "you dont have an account please register" });
     }
+    
 
     const isMatch = await bcrypt.compare(password, userIsExist.hashed_password);
     if (!isMatch) {
@@ -93,7 +95,7 @@ export const login = async (req, res) => {
     );
     return res.status(200).json({
       message: "logged in successfully",
-      usre: {
+      user: {
         id: userIsExist._id,
         name: userIsExist.name,
         email: userIsExist.email,
@@ -102,8 +104,8 @@ export const login = async (req, res) => {
       tokens,
     });
   } catch (error) {
+     console.error(error);
     return res.status(500).json({ message: "internal server error" });
-    console.log(error)
   }
 };
 
@@ -117,6 +119,5 @@ export const currentUser = async (rea, req) => {
 
   } catch (error) {
     return res.status(500).json({ message: "internal server error" });
-    console.log(error)
   }
 };

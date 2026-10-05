@@ -26,9 +26,15 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/store-home" element={<Home />} />
-        <Route element={<AdminLayout />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/manage/users" element={<ManageUsers />} />
+        
+       
+        <Route path="/admin" element={<AdminLayout />} >
+         <Route index path="dashbord" element={<AdminDashboard />} />
+         <Route path="manage/users" element={<ManageUsers/>} />
+        
+        </Route>
+
+
       </Routes>
      
     </>

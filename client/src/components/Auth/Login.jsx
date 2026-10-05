@@ -12,6 +12,7 @@ export default function Login() {
   const handleLogin =()=>{
 
     login(userData);
+    console.log(userData)
   }
   return (
     <>
