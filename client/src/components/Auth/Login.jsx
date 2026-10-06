@@ -38,7 +38,7 @@ export default function Login() {
             }
           />
 
-          <Button variant="contained" onClick={() => handleLogin()}>
+          <Button variant="contained" onClick={() => handleLogin("")}>
             Sign In
           </Button>
         </Paper>

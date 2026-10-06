@@ -9,14 +9,13 @@ export default function Sidebar() {
     <>
       <Box sx={{ minHeight: "100vh", width: "250px", bgcolor: "red" }}>
         <List>
-          <ListItemButton onClick={() => navigate("/admin")}>
+          <ListItemButton onClick={() => navigate("/admin/dashbord")}>
             Dashbaord
           </ListItemButton>
           <ListItemButton onClick={() => navigate("manage/users")}>
             Manage User
           </ListItemButton>
-          <ListItemButton>Manage Products</ListItemButton>
-          <ListItemButton>Manage Categories</ListItemButton>
+          <ListItemButton onClick={() => navigate("manage/category")}>Manage Categories</ListItemButton>
           <ListItemButton>Manage Message</ListItemButton>
           <ListItemButton>Manage Profile</ListItemButton>
           <ListItemButton onClick={() => logout()}>Logout</ListItemButton>

@@ -41,7 +41,7 @@ export default function jobsList() {
                 </CardContent>
                 <CardActions>Buy</CardActions>
                 <CardActions
-                  onClick={() => handleViewjob("/job/$(prdId)")}
+                  onClick={() => handleViewjob(`/job/$(prdId)`)}
                 >
                   View
                 </CardActions>

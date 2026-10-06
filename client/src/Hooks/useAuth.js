@@ -39,16 +39,16 @@ export const useAuth = () => {
         confirmPassword,
       });
       toast.success(res.data.message);
+      navigate("/login")
     } catch (error) {
-      toast.error(error.response.data.message || "something went wrong");
-      console.log(error)
+      toast.error(error?.response?.data?.message || "something went wrong");
+     
       return;
     }
   };
 
   const login = async ({ email, password }) => {
     try {
-      
       if (!email || !password) {
         toast.error("Please fill all fields ");
         return;
@@ -56,42 +56,41 @@ export const useAuth = () => {
       const res = await api.post("/auth/login", { email, password });
       toast.success(res.data.message);
       const { user, tokens } = res.data;
+      setCurrentUser(user);
       localStorage.setItem("tokens", JSON.stringify(tokens));
-      if(user.role === "admin") navigate("/admin/dashbord")
-        if(user.role === "user")navigate("/store-home")
-
-      
+      if (user.role === "admin") navigate("/admin/dashbord");
+      if (user.role === "user") navigate("/store-home");
     } catch (error) {
       toast.error(error?.response?.data?.message || "something went wrong");
-    
-      return
+      
+      return;
     }
   };
 
   const logout = async () => {
     try {
-      await localStorage.removeItem("currentUser");
+    
       await localStorage.removeItem("tokens");
-      setCurrentUser({})
+      setCurrentUser({});
       navigate("/");
+
     } catch (error) {
       toast.error(error?.response?.data?.message || "something went wrong");
-      console.log(error)
+      console.log(error);
       return;
     }
   };
 
   const authMe = async () => {
     try {
-        const res = await api.get("/auth/me")
-        setCurrentUser(res.data.currentUser)
+      const res = await api.get("/auth/me");
+      setCurrentUser(res.data.currentUser);
     } catch (error) {
-      toast.error(error?.response?.data?.message || "something went wrong");
-      console.log(error)
+       toast.error(error?.response?.data?.message || "something went wrong");
+      
       return;
     }
   };
 
-
-  return { register, login, logout , currentUser ,authMe};
+  return { register, login, logout, currentUser, authMe };
 };

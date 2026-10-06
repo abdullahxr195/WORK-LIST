@@ -11,7 +11,7 @@ export const useJobs = () => {
 
       setjobs(res.data.jobs);
     } catch (error) {
-      toast.error(error.response.data.message || "something went wrong");
+      toast.error(error?.response?.data?.message || "something went wrong");
 
       return;
     }
@@ -23,9 +23,19 @@ export const useJobs = () => {
       setjob(res.data.job);
       toast.success("res.data.message");
     } catch (error) {
-      toast.error(error.response.data.message || "something went wrong");
+      toast.error(error?.response?.data?.message || "something went wrong");
 
       return;
+    }
+  };
+
+  const createJob = async (jobData) => {
+    try {
+         const res = await api.post ("/create_Job"  , jobData)
+          toast.success("job added successfully")
+          fetchAlljobs();
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "something went wrong");
     }
   };
 
@@ -33,5 +43,5 @@ export const useJobs = () => {
     fetchAlljobs();
   }, []);
 
-  return { jobs, job, fetchjobById };
+  return { jobs, job, fetchjobById ,createJob};
 };

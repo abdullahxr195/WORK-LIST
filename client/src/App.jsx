@@ -13,11 +13,13 @@ import Home from "./pages/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import AdminLayout from "./components/Admin/Manage/AdminLayout";
+import ManageCategory from "./components/Admin/Manage/ManageCategory/ManageCategory";
+import AddJob from "./components/Layout/AddJob";
 
 function App() {
   return (
     <>
-      
+      <AddJob/>
       <Routes>
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}
@@ -29,9 +31,9 @@ function App() {
         
        
         <Route path="/admin" element={<AdminLayout />} >
-         <Route index path="dashbord" element={<AdminDashboard />} />
-         <Route path="manage/users" element={<ManageUsers/>} />
-        
+           <Route index path="dashbord" element={<AdminDashboard />} />
+           <Route path="manage/users" element={<ManageUsers/>} />
+          <Route path="manage/category" element={<ManageCategory/>} />
         </Route>
 
 
