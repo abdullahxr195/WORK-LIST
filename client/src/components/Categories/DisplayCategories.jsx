@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -15,7 +16,7 @@ export default function DisplayCategories() {
   const { categories } = useCategories();
   return (
     <>
-      <Header />
+      
       <Typography>Category</Typography>
       <Container sx={{ my: 3 }}>
         <Grid container spacing={4}>
@@ -23,9 +24,10 @@ export default function DisplayCategories() {
             <Grid sx={{ p: 2, m: 2 }}>
               key ={cat._id}
               <Card>
-                <CardMedia
+                <CardMedia 
                   component={"img"}
                   src="https://i.pinimg.com/1200x/78/67/3a/78673a9eb989b8782c5e83b707d231f1.jpg"
+                  sx={{height:"500px"}}
                 />
                 <CardContent>
                   <Typography>{cat.name}</Typography>
@@ -35,8 +37,8 @@ export default function DisplayCategories() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button>View</Button>
-                  <Button>View Product</Button>
+                  
+                  <Button>View Jobs</Button>
                 </CardActions>
               </Card>
             </Grid>

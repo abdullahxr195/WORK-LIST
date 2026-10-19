@@ -1,4 +1,5 @@
 import Sidebar from "../components/Admin/Manage/Sidebar";
+import DisplayCategories from "../components/Categories/DisplayCategories";
 import Header from "../components/Layout/Header";
 
 

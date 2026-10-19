@@ -13,6 +13,7 @@ import {
 import ViewList from "../Jobs/JobsList.jsx"
 import Header from "../Layout/Header.jsx";
 import { useJobs } from "../../Hooks/useJobs.js";
+import DisplayCategories from "../Categories/DisplayCategories.jsx";
 
 export default function ViewJob() {
   const { jobId } = useParams();
@@ -24,7 +25,7 @@ export default function ViewJob() {
   console.log(job);
   return (
     <>
-    <Header/>
+    
       <Card>
         
         <CardMedia
@@ -43,9 +44,8 @@ export default function ViewJob() {
           <Typography>{job.number_employees} </Typography>
           
           <Divider />
-           <ViewList/>
         </CardContent>
-
+  <DisplayCategories/>
       </Card>
       
     </>

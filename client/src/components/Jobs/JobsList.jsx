@@ -12,6 +12,7 @@ import {
 import Header from "../Layout/Header";
 import { useNavigate } from "react-router-dom";
 import { useJobs } from "../../Hooks/useJobs";
+import DisplayCategories from "../Categories/DisplayCategories";
 export default function jobsList() {
   const navigate = useNavigate();
   const { jobs } = useJobs();
@@ -27,22 +28,30 @@ export default function jobsList() {
               key = {job._id}
               <Card>
                 <CardContent>
-                  <Typography>{job.name}</Typography>
-                  <Typography>${job.descriprion}</Typography>
+                  <Typography>{job. manager_name}</Typography>
+                  <Typography>{job.salary}</Typography>
+                  <Typography>{job.time}</Typography>
+                  <Typography>{job.manager_number}</Typography>
+                  <Typography>{job.location}</Typography>
+                  <Typography>{job.age}</Typography>
+                  <Typography>{job.experience}</Typography>
+                  <Typography>{job.number_employees}</Typography>
+                  
                   <Divider />
                   <Typography>
-                    {job.descriprion || "no avilable descriprion"}
+                    {job.catId?.name || "no avilable descriprion"}
                   </Typography>
                 </CardContent>
                 <CardActions
                   onClick={() => handleViewjob(`/job/$(prdId)`)}
                 >
-                  View
+            
                 </CardActions>
               </Card>
             </Grid>
-
+           
           ))}
+          
         </Grid>
       </Container>
     </>

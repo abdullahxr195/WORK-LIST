@@ -16,6 +16,8 @@ import AdminLayout from "./components/Admin/Manage/AdminLayout";
 import ManageCategory from "./components/Admin/Manage/ManageCategory/ManageCategory";
 import AddJob from "./components/Layout/AddJob";
 import ViewJob from "./components/Jobs/ViewJob";
+import JobPage from "./pages/JodPage/JobPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 function App() {
   return (
@@ -24,12 +26,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}
-        <Route path="/View-Job" element={<ViewJob />} />
+        <Route path="/Job-Page" element={<JobPage />} />
         
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/store-home" element={<Home />} />
-        
+        <Route path="/category-page" element={<CategoryPage />} />
        
         <Route path="/admin" element={<AdminLayout />} >
            <Route index path="dashbord" element={<AdminDashboard />} />

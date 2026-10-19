@@ -33,8 +33,8 @@ export default function AddJob() {
 
   const handleAddJob = () => {
     createJob(jobData);
-    console.log(jobData)
     setOpenForm(false);
+    console.log(jobData)
   };
       
 
@@ -125,7 +125,7 @@ export default function AddJob() {
                 </Select>
               </FormControl>
 
-              <Button onClick={() => handleAddJob()}>Add</Button>
+              <Button onClick={() => handleAddJob("/Job-Page")}>Add</Button>
             </Paper>
           </Box>
         )}

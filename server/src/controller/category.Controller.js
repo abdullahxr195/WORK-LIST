@@ -21,7 +21,7 @@ export const getAllCategories = async (req, res) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export const createCategory = async (req, res) => {
   try {
-    const { name, description } = req.body;
+    const { name, descriprion } = req.body;
 
     if (!name) {
       return res
@@ -37,7 +37,7 @@ export const createCategory = async (req, res) => {
       });
     }
 
-    const category = await Category.create({ name, description });
+    const category = await Category.create({ name, descriprion });
 
     if (!category) {
       return res
@@ -110,11 +110,11 @@ export const deleteCatergory = async (req, res) => {
 export const updateCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description } = req.body;
+    const { name, descriprion } = req.body;
 
     const updateCategory = await Category.findByIdAndUpdate(
       id,
-      { name, description , updatedAt: new Date()},
+      { name, descriprion , updatedAt: new Date()},
       { new: true },
     );
 

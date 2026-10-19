@@ -3,7 +3,7 @@ import { api } from "../api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export const useAuth = () => {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState([null]);
   const navigate = useNavigate();
   const register = async ({
     name,
