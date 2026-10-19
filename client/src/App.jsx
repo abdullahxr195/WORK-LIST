@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}
-        <Route path="/View-Job" element={<JobsList />} />
+        <Route path="/View-Job" element={<ViewJob />} />
         
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

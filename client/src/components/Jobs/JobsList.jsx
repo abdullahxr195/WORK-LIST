@@ -12,7 +12,6 @@ import {
 import Header from "../Layout/Header";
 import { useNavigate } from "react-router-dom";
 import { useJobs } from "../../Hooks/useJobs";
-import ViewJob from "./ViewJob";
 export default function jobsList() {
   const navigate = useNavigate();
   const { jobs } = useJobs();
@@ -20,7 +19,7 @@ export default function jobsList() {
   return (
     <>
     
-     <Header/>
+     
       <Container sx={{ my: 3 }}>
         <Grid container spacing={4}>
           {jobs.map((job) => (
@@ -45,9 +44,7 @@ export default function jobsList() {
 
           ))}
         </Grid>
-        
       </Container>
-      <ViewJob/>
     </>
   );
 }

@@ -24,7 +24,7 @@ export default function ViewJob() {
   console.log(job);
   return (
     <>
-    
+    <Header/>
       <Card>
         
         <CardMedia
@@ -41,14 +41,13 @@ export default function ViewJob() {
           <Typography>{job.age} </Typography>
           <Typography>{job.experience} </Typography>
           <Typography>{job.number_employees} </Typography>
+          
           <Divider />
+           <ViewList/>
         </CardContent>
 
-        <CardActions>
-          <Button>View</Button>
-        </CardActions>
-        <ViewList/>
       </Card>
+      
     </>
   );
 }
