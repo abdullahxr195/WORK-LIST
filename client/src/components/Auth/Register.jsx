@@ -3,17 +3,17 @@ import { useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 
 export default function Register() {
-  const [userData,setUserData] = useState({
-    name:"",
-    email:"",
-    password:"",
-    confirmPassword:"",
-    phoneNumber:"",
-  }); 
-  const{register} = useAuth();
-  const handleRegister = () =>{
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phoneNumber: "",
+  });
+  const { register } = useAuth();
+  const handlRegister = () => {
     register(userData);
-
+    console.log(userData);
   };
   return (
     <>
@@ -59,7 +59,7 @@ export default function Register() {
               setUserData({ ...userData, confirmPassword: e.target.value })
             }
           />
-          <Button variant="contained" onClick={() => handleRegister()}>
+          <Button variant="contained" onClick={() => handlRegister()}>
             Sign Up
           </Button>
         </Paper>

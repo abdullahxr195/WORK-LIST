@@ -7,13 +7,11 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const {login} = useAuth();
-
-  const handleLogin =()=>{
-
+  const { login } = useAuth();
+  const handleLogin = () => {
     login(userData);
-    console.log(userData)
-  }
+    console.log(userData);
+  };
   return (
     <>
       <Container sx={{ margin: "auto" }}>

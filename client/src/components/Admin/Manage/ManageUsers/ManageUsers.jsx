@@ -13,9 +13,11 @@ import {
 } from "@mui/material";
 import { useUsers } from "../../../../Hooks/useUsers";
 import { useEffect, useState } from "react";
+import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageUsers() {
   const { fetchAllUsers, users, deleteUserById} = useUsers();
+ console.log(users)
   useEffect(() => {
     fetchAllUsers();
   }, []);
@@ -69,7 +71,7 @@ export default function ManageUsers() {
                     </TableCell>
                     <TableCell>
                       <Button>Edit</Button>
-                      <Button>Delet</Button>
+                      <Button onClick={()=> deleteUserById(user._id)}>Delet</Button>
                     </TableCell>
                   </TableRow>
                 );

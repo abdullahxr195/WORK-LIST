@@ -15,15 +15,16 @@ import Login from "./components/Auth/Login";
 import AdminLayout from "./components/Admin/Manage/AdminLayout";
 import ManageCategory from "./components/Admin/Manage/ManageCategory/ManageCategory";
 import AddJob from "./components/Layout/AddJob";
+import ViewJob from "./components/Jobs/ViewJob";
 
 function App() {
   return (
     <>
-      <AddJob/>
+    
       <Routes>
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}
-       
+        <Route path="/View-Job" element={<ViewJob />} />
         
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

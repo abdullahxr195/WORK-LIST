@@ -1,31 +1,30 @@
-import { useState } from "react"
-import toast from "react-hot-toast"
-import { api } from "../api"
-
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { api } from "../api";
 
 export const useUsers = () => {
+  const [users, setUsers] = useState([]);
 
-const [users , setUsers] = useState([])
-
-const fetchAllUsers = async () => {
-
+  const fetchAllUsers = async () => {
     try {
-        const res = await api.get("/users")
+      const res = await api.get("/users");
+      setUsers(res.data.users);
     } catch (error) {
-        toast.error(error?.response?.data?.message || " some thing went wrong")
-        return;
+      toast.error(error?.response?.data?.message || " some thing went wrong");
+      return;
     }
+  };
 
-}
+  const deletUserById = async (id) => {
+    try {
+      const res = await api.delete(`/user/${id}`);
+      toast.success(res.data.message);
+      fetchAllUsers();
+    } catch (error) {
+      toast.error(error?.response?.data?.message || " some thing went wrong");
+      return;
+    }
+  };
 
-
-return{fetchAllUsers , users}
-
-}
-
-
-
-
-
-
-
+  return { fetchAllUsers, users, deletUserById};
+};

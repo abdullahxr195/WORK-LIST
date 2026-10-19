@@ -16,9 +16,9 @@ import { useJobs } from "../../Hooks/useJobs";
 export default function ViewJob() {
   const { jobId } = useParams();
 
-  const { job, fetchJobById } = useJobs();
+  const { job, fetchjobById } = useJobs();
   useEffect(() => {
-    fetchJobById(jobId);
+    fetchjobById(jobId);
   }, [jobId]);
   console.log(job);
   return (
@@ -27,14 +27,14 @@ export default function ViewJob() {
       <Card>
         <CardMedia
           component={"img"}
-          src="https://i.pinimg.com/736x/e0/3d/e3/e03de3eb9e6b8e6ead7f307afad4f00e.jpg"
+          src=""
         ></CardMedia>
 
         <CardContent>
           <Typography>{job.manager_name}</Typography>
           <Typography>{job.catId?.time}</Typography>
           <Typography>{job.catId?.salary}</Typography>
-          <Typography>${job.location}</Typography>
+          <Typography>{job.location}</Typography>
           <Typography>{job.manager_number} </Typography>
           <Typography>{job.age} </Typography>
           <Typography>{job.experience} </Typography>

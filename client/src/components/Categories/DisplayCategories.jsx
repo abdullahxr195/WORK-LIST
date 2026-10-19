@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Header from "../Layout/Header";
-import { useCategories } from "../../hooks/useCategories";
+import { useCategories } from "../../Hooks/useCategories";
 
 export default function DisplayCategories() {
   const { categories } = useCategories();

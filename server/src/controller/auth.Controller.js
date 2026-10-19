@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
   try {
     const { name, email, password, phoneNumber, confirmPassword } = req.body;
+    console.log(req.body)
 
     if (!name || !email || !password || !confirmPassword) {
       return res
@@ -23,7 +24,7 @@ export const register = async (req, res) => {
     }
 
     const emaildRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (emaildRegex.test(email)) {
+    if (!emaildRegex.test(email)) {
       return res.status(400).json({ message: "pleas enter a valid email!" });
     }
 
@@ -50,7 +51,7 @@ export const register = async (req, res) => {
       phoneNumber: phoneNumber,
       role: "user",
     });
-
+  
     return res
       .status(201)
       .json({ message: "create account successfully! please login!" });
@@ -91,7 +92,7 @@ export const login = async (req, res) => {
         role: userIsExist.role,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "15m" },
+      { expiresIn: "20m" },
     );
     return res.status(200).json({
       message: "logged in successfully",

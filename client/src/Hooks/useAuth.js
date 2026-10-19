@@ -26,7 +26,7 @@ export const useAuth = () => {
       const passwordRegex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-      if (passwordRegex.test(password)) {
+      if (!passwordRegex.test(password)) {
         toast.error(
           "password shoud contains letters in lower case and upperaces and numbers and special charecters and at least 8 charecters length",
         );
@@ -58,6 +58,8 @@ export const useAuth = () => {
       const { user, tokens } = res.data;
       setCurrentUser(user);
       localStorage.setItem("tokens", JSON.stringify(tokens));
+      localStorage.setItem("CurrentUser" , JSON.stringify(user))
+      console.log(user)
       if (user.role === "admin") navigate("/admin/dashbord");
       if (user.role === "user") navigate("/store-home");
     } catch (error) {

@@ -16,7 +16,7 @@ export default function () {
   return (
     <>
       <Header />
-      <Sidebar/>
+     
   
   
     </>

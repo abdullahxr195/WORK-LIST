@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
 import { useEffect } from "react";
+import AddJob from "./AddJob";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function Header() {
         >
           <Typography variant="h4">WORK LIST</Typography>
           <Box>
+              <AddJob/>
             <MenuList
               sx={{
                 display: "flex",
@@ -37,7 +39,7 @@ export default function Header() {
                 gap: 2,
               }}
             >
-              <MenuItem onClick={() => navigate("/products")}>
+              <MenuItem onClick={() => navigate("/View-Job")}>
                 Jobs
               </MenuItem>
               <MenuItem onClick={() => navigate("/categories")}>

@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { useJobs } from "../../Hooks/useJobs";
+import {useCategories} from "../../Hooks/useCategories"
+
 import {
   Box,
   Button,
   Divider,
+  FormControl,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 
 export default function AddJob() {
   const { jobs, createJob } = useJobs();
+  const {categories} = useCategories()
   const [openForm, setOpenForm] = useState(false);
   const [jobData, setJobData] = useState({
     manager_name: "",
@@ -26,7 +33,7 @@ export default function AddJob() {
 
   const handleAddJob = () => {
     createJob(jobData);
-    setOpenForm(false)
+    setOpenForm(false);
   };
   return (
     <>
@@ -99,15 +106,21 @@ export default function AddJob() {
                   setJobData({ ...jobData, number_employees: e.target.value })
                 }
               />
-              <TextField
-                label="catId"
-                value={jobData.catId}
-                onChange={(e) =>
-                  setJobData({ ...jobData, catId: e.target.value })
-                }
-              />
 
-
+              <FormControl>
+                <InputLabel id="category">category</InputLabel>
+                <Select
+                  labelId="category"
+                  value={jobData.catId}
+                  onChange={(e) =>
+                    setJobData({ ...jobData, catId: e.target.value })
+                  }
+                >
+                  {categories.map((cat) => (
+                    <MenuItem value={cat._id}>{cat.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
               <Button onClick={() => handleAddJob()}>Add</Button>
             </Paper>

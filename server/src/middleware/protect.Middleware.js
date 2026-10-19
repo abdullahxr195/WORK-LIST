@@ -1,9 +1,17 @@
 import jwt from "jsonwebtoken";
 
 export const protect = async (req, res, next) => {
-  const tokens = req.headers.authorization.split(" ")[1];
-  console.log(tokens);
+  const authHeader = req.headers.authorization;
+  console.log(authHeader);
 
+  if (!authHeader?.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "unzutherized" });
+  }
+  // read tokens
+  const tokens = authHeader.split(" ")[1];
+  /// bearer tokens
+  // debug
+  console.log(tokens);
   if (!tokens) {
     return res.status(401).json({ message: "unzutherized you cant get in" });
   }
