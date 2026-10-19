@@ -39,7 +39,7 @@ const jobsSchema = new mongoose.Schema(
       required: true,
     },
 
-    catId: {
+    catID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,

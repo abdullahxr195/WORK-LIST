@@ -28,13 +28,16 @@ export default function AddJob() {
     age: "",
     experience: "",
     number_employees: "",
-    catId: "",
+    catID: "",
   });
 
   const handleAddJob = () => {
     createJob(jobData);
     setOpenForm(false);
+    console.log(jobData)
   };
+      
+
   return (
     <>
       <Box>
@@ -111,9 +114,9 @@ export default function AddJob() {
                 <InputLabel id="category">category</InputLabel>
                 <Select
                   labelId="category"
-                  value={jobData.catId}
+                  value={jobData.catID}
                   onChange={(e) =>
-                    setJobData({ ...jobData, catId: e.target.value })
+                    setJobData({ ...jobData, catID: e.target.value })
                   }
                 >
                   {categories.map((cat) => (
