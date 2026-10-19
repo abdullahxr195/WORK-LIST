@@ -33,8 +33,8 @@ export default function AddJob() {
 
   const handleAddJob = () => {
     createJob(jobData);
-    setOpenForm(false);
     console.log(jobData)
+    setOpenForm(false);
   };
       
 

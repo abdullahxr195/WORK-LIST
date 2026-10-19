@@ -3,7 +3,7 @@ import Job from "../models/jobs.Model.js";
 
 export const getAllJobs = async (req, res) => {
   try {
-    const jobs = await Job.find().populate("catId", "manager_name,");
+    const jobs = await Job.find().populate("catID", "manager_name,");
     if (jobs.length === 0) {
       return res.status(200).json({ message: "No jobs yet", Jobs: [] });
     }
@@ -105,7 +105,7 @@ export const createJob = async (req, res) => {
 
 export const getJobById = async (req, res) => {
   try {
-    const { id } = req.Params;
+    const { id } = req.params;
 
     if (!id) {
       return res.status(400).json({ message: "No selected item" });

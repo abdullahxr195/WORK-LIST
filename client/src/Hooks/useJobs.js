@@ -21,7 +21,7 @@ export const useJobs = () => {
     try {
       const res = await api.get(`/job/${jobId}`);
       setjob(res.data.job);
-      toast.success("res.data.message");
+      toast.success(res.data.message);
     } catch (error) {
       toast.error(error?.response?.data?.message || "something went wrong");
 

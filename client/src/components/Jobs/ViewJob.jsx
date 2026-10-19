@@ -10,8 +10,9 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import Header from "../Layout/Header";
-import { useJobs } from "../../Hooks/useJobs";
+import ViewList from "../Jobs/JobsList.jsx"
+import Header from "../Layout/Header.jsx";
+import { useJobs } from "../../Hooks/useJobs.js";
 
 export default function ViewJob() {
   const { jobId } = useParams();
@@ -23,8 +24,9 @@ export default function ViewJob() {
   console.log(job);
   return (
     <>
-    <Header/>
+    
       <Card>
+        
         <CardMedia
           component={"img"}
           src=""
@@ -45,6 +47,7 @@ export default function ViewJob() {
         <CardActions>
           <Button>View</Button>
         </CardActions>
+        <ViewList/>
       </Card>
     </>
   );

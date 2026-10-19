@@ -12,34 +12,29 @@ import {
 import Header from "../Layout/Header";
 import { useNavigate } from "react-router-dom";
 import { useJobs } from "../../Hooks/useJobs";
+import ViewJob from "./ViewJob";
 export default function jobsList() {
   const navigate = useNavigate();
   const { jobs } = useJobs();
   console.log(jobs);
   return (
     <>
-      <Header />
-      <Typography>Job</Typography>
+    
+     <Header/>
       <Container sx={{ my: 3 }}>
         <Grid container spacing={4}>
           {jobs.map((job) => (
             <Grid sx={{ p: 2, m: 2 }}>
               key = {job._id}
               <Card>
-                <CardMedia
-                  component={"img"}
-                  src="https://i.pinimg.com/1200x/78/67/3a/78673a9eb989b8782c5e83b707d231f1.jpg"
-                />
                 <CardContent>
-                  <Typography>{job.catId?.name}</Typography>
-                  <Typography>${job.price}</Typography>
-                  <Typography>{job.stock} left</Typography>
+                  <Typography>{job.name}</Typography>
+                  <Typography>${job.descriprion}</Typography>
                   <Divider />
                   <Typography>
                     {job.descriprion || "no avilable descriprion"}
                   </Typography>
                 </CardContent>
-                <CardActions>Buy</CardActions>
                 <CardActions
                   onClick={() => handleViewjob(`/job/$(prdId)`)}
                 >
@@ -47,9 +42,12 @@ export default function jobsList() {
                 </CardActions>
               </Card>
             </Grid>
+
           ))}
         </Grid>
+        
       </Container>
+      <ViewJob/>
     </>
   );
 }
