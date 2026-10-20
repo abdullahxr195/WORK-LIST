@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Divider,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -12,21 +13,41 @@ import {
 } from "@mui/material";
 import { useCategories } from "../../../../Hooks/useCategories";
 import AddCategory from "./AddCategory";
+import { useState } from "react";
+import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageCategory() {
-   const { categories } = useCategories();
-   console.log(categories)
+  const { categories ,deletCategoryById} = useCategories();
+  console.log(categories);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedIdtoDelete, setSelectedIdtoDelete] = useState(null);
+  const handleClose = () => {
+    setOpenModal(!openModal);
+    setSelectedIdtoDelete(null)
+  };
+
+  const handleConfiem = () => {
+    deletCategoryById(selectedIdtoDelete);
+    setOpenModal(false);
+  };
   return (
     <>
-      <Box sx={{my:3 , mx:2}}>
-        <Box sx={{display:"flex" ,flexDirection:"row" , justifyContent:"space-around",my:4}}>
+      <Box sx={{ my: 3, mx: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            my: 4,
+          }}
+        >
           <Typography>Manage Category </Typography>
           {/* <Button>Add Category</Button> */}
-          <AddCategory/>
+          <AddCategory />
         </Box>
 
         <Divider sx={{ textAlign: "center", width: "60%" }} />
-        <TableContainer>
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -44,7 +65,7 @@ export default function ManageCategory() {
                   <TableRow key={cat._id}>
                     <TableCell>{idx + 1}</TableCell>
                     <TableCell>{cat.name}</TableCell>
-                   
+
                     <TableCell>
                       {new Date(cat.createdAt).toLocaleDateString}
                     </TableCell>
@@ -53,7 +74,9 @@ export default function ManageCategory() {
                     </TableCell>
                     <TableCell>
                       <Button>Edit</Button>
-                      <Button>Delete</Button>
+                      <Button onClick={() => (setOpenModal(!openModal), setSelectedIdtoDelete(categories._id)) }>
+                        Delete
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );
@@ -62,6 +85,11 @@ export default function ManageCategory() {
           </Table>
         </TableContainer>
       </Box>
+      <ConfirmModal
+        open={openModal}
+        onclose={handleClose}
+        onconfirm={handleConfiem}
+      />
     </>
   );
 }

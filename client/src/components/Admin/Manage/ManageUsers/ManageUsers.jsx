@@ -20,6 +20,7 @@ export default function ManageUsers() {
  
   useEffect(() => {
     fetchAllUsers();
+    
   }, []);
  console.log(users)
   const [openModal, setOpenModal] = useState(false);

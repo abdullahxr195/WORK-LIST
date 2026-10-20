@@ -25,8 +25,25 @@ export const useCategories = () => {
       toast.error(error?.response?.data?.message || "something went wrong");
     }
   };
+
+
+
+  const deletCategoryById = async (id) => {
+    try {
+      const res = await api.delete(`/category/${id}`);
+      toast.success(res.data.message);
+      fetchAllCategories();
+    } catch (error) {
+      toast.error(error?.response?.data?.message || " some thing went wrong");
+      return;
+    }
+  };
+
+
+
+
   useEffect(() => {
     fetchAllCategories();
   }, []);
-  return { categories, createCategory };
+  return { categories, createCategory ,deletCategoryById};
 };

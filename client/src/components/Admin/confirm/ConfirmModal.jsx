@@ -1,6 +1,6 @@
 import { Box, Button, Modal, Typography } from "@mui/material";
 
-export default function ConfirmModal({open , onclose}){
+export default function ConfirmModal({open , onclose , onconfirm}){
 return(<>
 
 <Modal open = {open}>
@@ -11,7 +11,7 @@ return(<>
 
     <Box>
 
-    <Button>OK</Button>
+    <Button  onClick={() => onconfirm()}>OK</Button>
     <Button onClick={() => onclose()}>Cancel</Button>
 
     </Box>
