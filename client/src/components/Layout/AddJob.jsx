@@ -125,7 +125,7 @@ export default function AddJob() {
                 </Select>
               </FormControl>
 
-              <Button onClick={() => handleAddJob("/Job-Page")}>Add</Button>
+              <Button onClick={() => handleAddJob()}>Add</Button>
             </Paper>
           </Box>
         )}

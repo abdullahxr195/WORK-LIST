@@ -17,10 +17,11 @@ import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageUsers() {
   const { fetchAllUsers, users, deleteUserById} = useUsers();
- console.log(users)
+ 
   useEffect(() => {
     fetchAllUsers();
   }, []);
+ console.log(users)
   const [openModal, setOpenModal] = useState(false);
   const [selectedIdtoDelete, setSelectedIdtoDelete] = useState(null);
   const handleClose = () => {
