@@ -73,8 +73,8 @@ export const createJob = async (req, res) => {
       return res.status(400).json({ message: "Please put the category name " });
     }
 
-    const isCatExist = await Category.findById({catID});
-
+    const isCatExist = await Category.findById(catID);
+    console.log(catID)
     if (!isCatExist) {
       return res.status(400).json({ message: "the selected is not find " });
     }
@@ -99,6 +99,7 @@ export const createJob = async (req, res) => {
 
     return res.status(200).json({ message: " jobs successfully" });
   } catch (error) {
+    console.error(error)
     return res.status(500).json({ message: "internal server error" });
   }
 };
