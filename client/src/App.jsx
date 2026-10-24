@@ -18,7 +18,7 @@ import AddJob from "./components/Layout/AddJob";
 import ViewJob from "./components/Jobs/ViewJob";
 import JobPage from "./pages/JodPage/JobPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
-
+import Profile from "./components/Profile/Profile";
 function App() {
   return (
     <>
@@ -27,7 +27,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}
         <Route path="/Job-Page" element={<JobPage />} />
-        
+           <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/store-home" element={<Home />} />

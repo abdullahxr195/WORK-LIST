@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useCategories } from "../../../../Hooks/useCategories";
@@ -17,19 +18,28 @@ import { useState } from "react";
 import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageCategory() {
-  const { categories ,deletCategoryById} = useCategories();
+  /////////////////////////////////////////////////////////////////////////
+  const { categories, deletCategoryById } = useCategories();
   console.log(categories);
+  //////////////////////////////////////////////////////////////////////////
   const [openModal, setOpenModal] = useState(false);
+  /////////////////////////////////////////////////////////////////////////
   const [selectedIdtoDelete, setSelectedIdtoDelete] = useState(null);
+  ////////////////////////////////////////////////////////////////////////
+  const [selectedIdtoUpdate, setSelectedIdtoUpdate] = useState(null);
+  /////////////////////////////////////////////////////////////////////////
   const handleClose = () => {
     setOpenModal(!openModal);
-    setSelectedIdtoDelete(null)
+    setSelectedIdtoDelete(null);
   };
-
+  /////////////////////////////////////////////////////////////////////////
   const handleConfiem = () => {
     deletCategoryById(selectedIdtoDelete);
     setOpenModal(false);
   };
+  /////////////////////////////////////////////////////////////////////////
+  const hanleSaveEdits = ({ name }) => {};
+  /////////////////////////////////////////////////////////////////////////
   return (
     <>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -61,10 +71,18 @@ export default function ManageCategory() {
 
             <TableBody>
               {categories.map((cat, idx) => {
+                const selctedCat = cat._id == selectedIdtoUpdate;
                 return (
                   <TableRow key={cat._id}>
                     <TableCell>{idx + 1}</TableCell>
-                    <TableCell>{cat.name}</TableCell>
+
+                    <TableCell>
+                      {selctedCat ? (
+                        <TextField label="Name" value={cat.name} />
+                      ) : (
+                        cat.name
+                      )}
+                    </TableCell>
 
                     <TableCell>
                       {new Date(cat.createdAt).toLocaleDateString}
@@ -73,8 +91,24 @@ export default function ManageCategory() {
                       {new Date(cat.updatedAt).toLocaleDateString}
                     </TableCell>
                     <TableCell>
-                      <Button>Edit</Button>
-                      <Button onClick={() => (setOpenModal(!openModal), setSelectedIdtoDelete(categories._id)) }>
+                      {selctedCat ? (
+                        <>
+                          <Button onClick={() => hanleSaveEdits()}>Save</Button>
+                          <Button onClick={() => setSelectedIdtoUpdate(null)}>
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        <Button onClick={() => setSelectedIdtoUpdate(cat._id)}>
+                          Edit
+                        </Button>
+                      )}
+                      <Button
+                        onClick={() => (
+                          setOpenModal(!openModal),
+                          setSelectedIdtoDelete(cat._id)
+                        )}
+                      >
                         Delete
                       </Button>
                     </TableCell>

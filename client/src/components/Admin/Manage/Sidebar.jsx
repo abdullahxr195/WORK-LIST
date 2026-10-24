@@ -16,7 +16,7 @@ export default function Sidebar() {
             Manage User
           </ListItemButton>
           <ListItemButton onClick={() => navigate("manage/category")}>Manage Categories</ListItemButton>
-          <ListItemButton>Manage Profile</ListItemButton>
+          <ListItemButton onClick={() => navigate("/profile")}>Manage Profile</ListItemButton>
           <ListItemButton onClick={() => logout()}>Logout</ListItemButton>
         </List>
       </Box>
