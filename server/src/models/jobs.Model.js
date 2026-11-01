@@ -13,7 +13,7 @@ const jobsSchema = new mongoose.Schema(
     },
 
     salary: {
-      type: Number,
+      type: String,
     },
 
     manager_number: {
@@ -39,7 +39,7 @@ const jobsSchema = new mongoose.Schema(
       required: true,
     },
 
-    catID: {
+    catId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
       required: true,

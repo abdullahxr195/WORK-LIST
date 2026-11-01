@@ -19,8 +19,6 @@ export default function jobsList() {
   console.log(jobs);
   return (
     <>
-    
-     
       <Container sx={{ my: 3 }}>
         <Grid container spacing={4}>
           {jobs.map((job) => (
@@ -28,7 +26,7 @@ export default function jobsList() {
               key = {job._id}
               <Card>
                 <CardContent>
-                  <Typography>{job. manager_name}</Typography>
+                  <Typography>{job.manager_name}</Typography>
                   <Typography>{job.salary}</Typography>
                   <Typography>{job.time}</Typography>
                   <Typography>{job.manager_number}</Typography>
@@ -36,7 +34,7 @@ export default function jobsList() {
                   <Typography>{job.age}</Typography>
                   <Typography>{job.experience}</Typography>
                   <Typography>{job.number_employees}</Typography>
-                  
+
                   <Divider />
                   <Typography>
                     {job.catId?.name || "no avilable descriprion"}
@@ -44,14 +42,10 @@ export default function jobsList() {
                 </CardContent>
                 <CardActions
                   onClick={() => handleViewjob(`/job/$(prdId)`)}
-                >
-            
-                </CardActions>
+                ></CardActions>
               </Card>
             </Grid>
-           
           ))}
-          
         </Grid>
       </Container>
     </>

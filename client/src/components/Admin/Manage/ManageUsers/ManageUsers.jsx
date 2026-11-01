@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useUsers } from "../../../../Hooks/useUsers";
@@ -16,25 +17,37 @@ import { useEffect, useState } from "react";
 import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageUsers() {
-  const { fetchAllUsers, users, deleteUserById} = useUsers();
- 
+  const { fetchAllUsers, users, deletUserById, updateUsers } = useUsers();
+
   useEffect(() => {
     fetchAllUsers();
-    
   }, []);
- console.log(users)
+  /////////////////////////////////////////////////////////////////////////
   const [openModal, setOpenModal] = useState(false);
+  /////////////////////////////////////////////////////////////////////////
   const [selectedIdtoDelete, setSelectedIdtoDelete] = useState(null);
+  /////////////////////////////////////////////////////////////////////////
   const handleClose = () => {
     setOpenModal(!openModal);
     setSelectedIdtoDelete(null);
   };
-
+  /////////////////////////////////////////////////////////////////////////
+  const [selectedIdtoUpdate, setSelectedIdtoUpdate] = useState(null);
+  /////////////////////////////////////////////////////////////////////////
   const handleConfiem = () => {
-    deleteUserById(selectedIdtoDelete);
+    deletUserById(selectedIdtoDelete);
     setOpenModal(false);
   };
-
+  /////////////////////////////////////////////////////////////////////////
+  const [newData, setNewData] = useState({
+    name: "",
+  });
+  /////////////////////////////////////////////////////////////////////////
+  const hanleSaveEdits = () => {
+    updateUsers(selectedIdtoUpdate, newData);
+    setSelectedIdtoUpdate(null);
+  };
+  /////////////////////////////////////////////////////////////////////////
   return (
     <>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -56,12 +69,49 @@ export default function ManageUsers() {
 
             <TableBody>
               {users.map((user, idx) => {
+                const selctedUse = user._id == selectedIdtoUpdate;
                 return (
                   <TableRow key={user._id}>
                     <TableCell>{idx + 1}</TableCell>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.role}</TableCell>
+                    <TableCell>
+                      {selctedUse ? (
+                        <TextField
+                          label="Name"
+                          value={newData.name}
+                          onChange={(e) =>
+                            setNewData({ ...newData, name: e.target.value })
+                          }
+                        />
+                      ) : (
+                        user.name
+                      )}
+                    </TableCell>
+                     <TableCell>
+                      {selctedUse ? (
+                        <TextField
+                          label="email"
+                          value={newData.email}
+                          onChange={(e) =>
+                            setNewData({ ...newData, email: e.target.value })
+                          }
+                        />
+                      ) : (
+                        user.email
+                      )}
+                      </TableCell>
+                    <TableCell>
+                      {selctedUse ? (
+                        <TextField
+                          label="role"
+                          value={newData.role}
+                          onChange={(e) =>
+                            setNewData({ ...newData, role: e.target.value })
+                          }
+                        />
+                      ) : (
+                        user.role
+                      )}
+                      </TableCell>
                     <TableCell>
                       {user.phoneNumber || "No Phone Number"}
                     </TableCell>
@@ -72,8 +122,26 @@ export default function ManageUsers() {
                       {new Date(user.updatedAt).toLocaleString()}
                     </TableCell>
                     <TableCell>
-                      <Button>Edit</Button>
-                      <Button onClick={()=> deleteUserById(user._id)}>Delet</Button>
+                      {selctedUse ? (
+                        <>
+                          <Button onClick={() => hanleSaveEdits()}>Save</Button>
+                          <Button onClick={() => setSelectedIdtoUpdate(null)}>
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
+                        <Button onClick={() => setSelectedIdtoUpdate(user._id)}>
+                          Edit
+                        </Button>
+                      )}
+                      <Button
+                        onClick={() => (
+                          setOpenModal(!openModal),
+                          deletUserById(user._id)
+                        )}
+                      >
+                        Delete
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );
@@ -84,10 +152,9 @@ export default function ManageUsers() {
       </Box>
 
       <ConfirmModal
-      open={openModal}
-      onclose={handleClose}
-      onconfirm={handleConfiem}
-      
+        open={openModal}
+        onclose={handleClose}
+        onconfirm={handleConfiem}
       />
     </>
   );

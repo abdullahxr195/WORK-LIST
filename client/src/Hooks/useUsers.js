@@ -26,5 +26,19 @@ export const useUsers = () => {
     }
   };
 
-  return { fetchAllUsers, users, deletUserById};
+
+  const updateUsers = async (id, newDate) => {
+    try {
+      const res = await api.put(`/user/${id}`, newDate)
+      toast.success(res.data.message)
+      fetchAllUsers()
+    } catch (error) {
+      toast.error(error?.response?.data?.message || " some thing went wrong");
+      return;
+    }
+  };
+
+
+
+  return { fetchAllUsers, users, deletUserById ,updateUsers};
 };

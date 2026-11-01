@@ -18,7 +18,7 @@ import AddJob from "./components/Layout/AddJob";
 import ViewJob from "./components/Jobs/ViewJob";
 import JobPage from "./pages/JodPage/JobPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/profile/Profile";
 function App() {
   return (
     <>

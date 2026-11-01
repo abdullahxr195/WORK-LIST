@@ -110,7 +110,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const currentUser = async (rea, req) => {
+export const currentUser = async (req, res) => {
   try {
     const id = req.user.id;
     if (!id) {
@@ -119,6 +119,7 @@ export const currentUser = async (rea, req) => {
      return res.status(200).json({ message: "ok", currentUser:req.user });
 
   } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "internal server error" });
   }
 };

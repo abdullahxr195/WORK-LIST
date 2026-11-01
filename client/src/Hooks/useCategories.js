@@ -26,8 +26,6 @@ export const useCategories = () => {
     }
   };
 
-
-
   const deletCategoryById = async (id) => {
     try {
       const res = await api.delete(`/category/${id}`);
@@ -39,11 +37,19 @@ export const useCategories = () => {
     }
   };
 
-
-
+  const updateCategorise = async (id, newDate) => {
+    try {
+      const res = await api.put(`/category/${id}`, newDate)
+      toast.success(res.data.message)
+      fetchAllCategories()
+    } catch (error) {
+      toast.error(error?.response?.data?.message || " some thing went wrong");
+      return;
+    }
+  };
 
   useEffect(() => {
     fetchAllCategories();
   }, []);
-  return { categories, createCategory ,deletCategoryById};
+  return { categories, createCategory, deletCategoryById , updateCategorise };
 };

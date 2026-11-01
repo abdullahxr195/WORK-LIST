@@ -3,14 +3,14 @@ import Job from "../models/jobs.Model.js";
 
 export const getAllJobs = async (req, res) => {
   try {
-    const jobs = await Job.find().populate("catID", "manager_name,");
+    const jobs = await Job.find().populate("catId", "name");
     if (jobs.length === 0) {
       return res.status(200).json({ message: "No jobs yet", Jobs: [] });
     }
 
     return res.status(200).json({ message: "jobs succesffuly", jobs });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ message: "internal server error" });
   }
 };
@@ -26,7 +26,7 @@ export const createJob = async (req, res) => {
       age,
       experience,
       number_employees,
-      catID,
+      catId,
     } = req.body;
 
     if (!manager_name) {
@@ -69,14 +69,16 @@ export const createJob = async (req, res) => {
         .json({ message: "Please put the number of employees  " });
     }
 
-    if (!catID) {
+    if (!catId) {
       return res.status(400).json({ message: "Please put the category name " });
     }
 
-    const isCatExist = await Category.findById(catID);
-    console.log(catID)
+    const isCatExist = await Category.findById({ _id: catId });
+    console.log(catId);
     if (!isCatExist) {
-      return res.status(400).json({ message: "the selected is not find " });
+      return res
+        .status(400)
+        .json({ message: "the selected category is not find " });
     }
 
     const job = await Job.create({
@@ -88,7 +90,7 @@ export const createJob = async (req, res) => {
       age,
       experience,
       number_employees,
-      catID,
+      catId,
     });
 
     if (!job) {
@@ -97,9 +99,9 @@ export const createJob = async (req, res) => {
       });
     }
 
-    return res.status(200).json({ message: " jobs successfully" });
+    return res.status(201).json({ message: " jobs successfully" , job});
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res.status(500).json({ message: "internal server error" });
   }
 };
@@ -112,7 +114,7 @@ export const getJobById = async (req, res) => {
       return res.status(400).json({ message: "No selected item" });
     }
 
-    const job = await Job.findById({ _id: id });
+    const job = await Job.findById({ _id: id }).populate("catId", "name descriprion" )
 
     if (!job) {
       return res.status(400).json({ message: "the job not found" });
@@ -142,7 +144,7 @@ export const getJobsByCatId = async (req, res) => {
 
     return res.status(200).json({ message: "found", jobs });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ message: "internal server error" });
   }
 };

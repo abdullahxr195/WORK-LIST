@@ -31,10 +31,10 @@ export const useJobs = () => {
 
   const createJob = async (jobData) => {
     try {
-         const res = await api.post ("/create_Job"  , jobData)
-         console.log(res)
-          toast.success("job added successfully")
-          fetchAlljobs();
+      const res = await api.post('/create_Job', jobData);
+      console.log(res);
+      toast.success("job added successfully");
+      fetchAlljobs();
     } catch (error) {
       toast.error(error?.response?.data?.message || "something went wrong");
     }
@@ -44,5 +44,5 @@ export const useJobs = () => {
     fetchAlljobs();
   }, []);
 
-  return { jobs, job, fetchjobById ,createJob};
+  return { jobs, job, fetchjobById, createJob };
 };

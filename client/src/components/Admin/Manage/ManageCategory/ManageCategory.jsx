@@ -19,7 +19,7 @@ import ConfirmModal from "../../confirm/ConfirmModal";
 
 export default function ManageCategory() {
   /////////////////////////////////////////////////////////////////////////
-  const { categories, deletCategoryById } = useCategories();
+  const { categories, deletCategoryById, updateCategorise } = useCategories();
   console.log(categories);
   //////////////////////////////////////////////////////////////////////////
   const [openModal, setOpenModal] = useState(false);
@@ -38,7 +38,14 @@ export default function ManageCategory() {
     setOpenModal(false);
   };
   /////////////////////////////////////////////////////////////////////////
-  const hanleSaveEdits = ({ name }) => {};
+  const hanleSaveEdits = () => {
+    updateCategorise(selectedIdtoUpdate, newData);
+    setSelectedIdtoUpdate(null);
+  };
+  /////////////////////////////////////////////////////////////////////////
+  const [newData, setNewData] = useState({
+    name: "",
+  });
   /////////////////////////////////////////////////////////////////////////
   return (
     <>
@@ -78,18 +85,25 @@ export default function ManageCategory() {
 
                     <TableCell>
                       {selctedCat ? (
-                        <TextField label="Name" value={cat.name} />
+                        <TextField
+                          label="Name"
+                          value={newData.name}
+                          onChange={(e) =>
+                            setNewData({ ...newData, name: e.target.value })
+                          }
+                        />
                       ) : (
                         cat.name
                       )}
                     </TableCell>
 
                     <TableCell>
-                      {new Date(cat.createdAt).toLocaleDateString}
+                      {new Date(cat.createdAt).toLocaleString()}
                     </TableCell>
                     <TableCell>
-                      {new Date(cat.updatedAt).toLocaleDateString}
+                      {new Date(cat.updatedAt).toLocaleString()}
                     </TableCell>
+
                     <TableCell>
                       {selctedCat ? (
                         <>
@@ -106,7 +120,7 @@ export default function ManageCategory() {
                       <Button
                         onClick={() => (
                           setOpenModal(!openModal),
-                          setSelectedIdtoDelete(cat._id)
+                          deletCategoryById(cat._id)
                         )}
                       >
                         Delete
