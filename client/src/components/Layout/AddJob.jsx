@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useJobs } from "../../Hooks/useJobs";
-import {useCategories} from "../../Hooks/useCategories"
+import { useCategories } from "../../Hooks/useCategories";
 
 import {
   Box,
@@ -15,9 +15,10 @@ import {
   Typography,
 } from "@mui/material";
 
+
 export default function AddJob() {
   const { jobs, createJob } = useJobs();
-  const {categories} = useCategories()
+  const { categories } = useCategories();
   const [openForm, setOpenForm] = useState(false);
   const [jobData, setJobData] = useState({
     manager_name: "",
@@ -34,26 +35,28 @@ export default function AddJob() {
   const handleAddJob = () => {
     createJob(jobData);
     setOpenForm(false);
-    console.log(jobData)
+    console.log(jobData);
   };
-      
 
   return (
     <>
       <Box>
         <Box>
-          <Button onClick={() => setOpenForm(!openForm)}>
-            {openForm ? "Cancel" : "Add Job"}
+          <Divider sx={{ textAlign: "center", width: "100%" }}>
+            <Typography variant="h3" sx={{ textAlign: "center" ,p:5, color:"black" }}>
+              Find Your Next Opportunity
+            </Typography>
+          </Divider>
+
+          <Button sx={{bgcolor:"DarkBlue" , color:"White"}} onClick={() => setOpenForm(!openForm)}>
+            {openForm ? "Cancel" : "+ Add Job"}
           </Button>
         </Box>
 
-        <Divider sx={{ textAlign: "center", width: "60%" }} />
-
         {openForm && (
           <Box>
-            <Paper>
-              <Typography>Add jobs form</Typography>
-              <TextField
+            <Paper sx={{bgcolor:"AliceBlue" , display:"flex"}}>
+              <TextField sx={{display:"flex" ,}}
                 label="manager_name"
                 value={jobData.manager_name}
                 onChange={(e) =>

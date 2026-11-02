@@ -18,7 +18,7 @@ export default function Header() {
   }, []);
   return (
     <>
-      <AppBar position="sticky" sx={{ bgcolor: "#0048BA" }}>
+      <AppBar position="sticky" sx={{ bgcolor: "#12346A" }}>
         <Toolbar
           sx={{
             display: "flex",
@@ -27,6 +27,7 @@ export default function Header() {
             p: 2,
           }}
         >
+       
           <Typography variant="h4">WORK LIST</Typography>
           <Box>
             <MenuList
@@ -34,26 +35,25 @@ export default function Header() {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",
-                gap: 2,
+                gap: 5,
               }}
             >
-              <MenuItem onClick={() => navigate("/Job-Page")}>Jobs</MenuItem>
-              <MenuItem onClick={() => navigate("/category-page")}>
+              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/Job-Page")}>Jobs</MenuItem>
+              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/category-page")}>
                 Categories
               </MenuItem>
-              <MenuItem>About</MenuItem>
+              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}}>About</MenuItem>
 
-              <MenuItem>Contact Us</MenuItem>
               {!currentUser || Object.keys(currentUser).length === 0 ? (
                 <>
-                  <MenuItem onClick={() => navigate("/register")}>
+                  <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1,gap:"20px"}} onClick={() => navigate("/register")}>
                     Register
                   </MenuItem>
-                  <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+                  <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/login")}>Login</MenuItem>
                 </>
               ) : (
                 <>
-                  <MenuItem onClick={() => logout()}>Logout</MenuItem>
+                  <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => logout()}>Logout</MenuItem>
                 </>
               )}
             </MenuList>

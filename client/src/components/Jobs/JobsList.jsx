@@ -19,26 +19,35 @@ export default function jobsList() {
   console.log(jobs);
   return (
     <>
-      <Container sx={{ my: 3 }}>
-        <Grid container spacing={4}>
+      <Container sx={{ my: 3  ,width:"50%",gap:77}}>
+        <Grid>
           {jobs.map((job) => (
-            <Grid sx={{ p: 2, m: 2 }}>
-              key = {job._id}
-              <Card>
+            <Grid >
+              <Card
+                sx={{
+                 
+                  height:370,
+                  borderRadius: 3,
+                  boxShadow: 3,
+                  padding: 2,
+                  margin: 2,
+                  
+                }}
+              >
                 <CardContent>
-                  <Typography>{job.manager_name}</Typography>
-                  <Typography>{job.salary}</Typography>
-                  <Typography>{job.time}</Typography>
-                  <Typography>{job.manager_number}</Typography>
-                  <Typography>{job.location}</Typography>
-                  <Typography>{job.age}</Typography>
-                  <Typography>{job.experience}</Typography>
-                  <Typography>{job.number_employees}</Typography>
+                  <Typography variant="h5">Manager Name: {job.manager_name}</Typography>
+                  <Typography variant="h5">Salary:{job.salary}</Typography>
+                  <Typography variant="h5">Time:{job.time}</Typography>
+                  <Typography variant="h5">Manager Number:{job.manager_number}</Typography>
+                  <Typography variant="h5">Location:{job.location}</Typography>
+                  <Typography variant="h5">Age:{job.age}</Typography>
+                  <Typography variant="h5">Experience:{job.experience}</Typography>
+                  <Typography variant="h5">
+                    Number Employees:{job.number_employees}
+                  </Typography>
 
                   <Divider />
-                  <Typography>
-                    {job.catId?.name || "no avilable descriprion"}
-                  </Typography>
+                  <Typography  variant="h4" sx={{m:2}}>Category:{job.catId?.name}</Typography>
                 </CardContent>
                 <CardActions
                   onClick={() => handleViewjob(`/job/$(prdId)`)}
