@@ -15,7 +15,6 @@ import {
   Typography,
 } from "@mui/material";
 
-
 export default function AddJob() {
   const { jobs, createJob } = useJobs();
   const { categories } = useCategories();
@@ -43,20 +42,26 @@ export default function AddJob() {
       <Box>
         <Box>
           <Divider sx={{ textAlign: "center", width: "100%" }}>
-            <Typography variant="h3" sx={{ textAlign: "center" ,p:5, color:"black" }}>
+            <Typography
+              variant="h3"
+              sx={{ textAlign: "center", p: 5, color: "black" }}
+            >
               Find Your Next Opportunity
             </Typography>
           </Divider>
 
-          <Button sx={{bgcolor:"DarkBlue" , color:"White"}} onClick={() => setOpenForm(!openForm)}>
+          <Button
+            sx={{ bgcolor: "DarkBlue", color: "White" }}
+            onClick={() => setOpenForm(!openForm)}
+          >
             {openForm ? "Cancel" : "+ Add Job"}
           </Button>
         </Box>
 
         {openForm && (
           <Box>
-            <Paper sx={{bgcolor:"AliceBlue" , display:"flex"}}>
-              <TextField sx={{display:"flex" ,}}
+            <Paper sx={{ bgcolor: "AliceBlue", p: 4, display: "flex" }}>
+              <TextField
                 label="manager_name"
                 value={jobData.manager_name}
                 onChange={(e) =>

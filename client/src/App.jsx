@@ -19,6 +19,7 @@ import ViewJob from "./components/Jobs/ViewJob";
 import JobPage from "./pages/JodPage/JobPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import Profile from "./components/profile/Profile";
+import AboutPage from "./pages/AboutPage/about.jsx";
 function App() {
   return (
     <>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/store-home" element={<Home />} />
         <Route path="/category-page" element={<CategoryPage />} />
+        <Route path="/about" element={<AboutPage/>} />
        
         <Route path="/admin" element={<AdminLayout />} >
            <Route index path="dashbord" element={<AdminDashboard />} />

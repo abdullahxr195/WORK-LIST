@@ -39,10 +39,10 @@ export default function Header() {
               }}
             >
               <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/Job-Page")}>Jobs</MenuItem>
-              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/category-page")}>
+              {/* <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/category-page")}>
                 Categories
-              </MenuItem>
-              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}}>About</MenuItem>
+              </MenuItem> */}
+              <MenuItem sx={{bgcolor:"DarkBlue",borderRadius:1}} onClick={() => navigate("/about")}>About</MenuItem>
 
               {!currentUser || Object.keys(currentUser).length === 0 ? (
                 <>
