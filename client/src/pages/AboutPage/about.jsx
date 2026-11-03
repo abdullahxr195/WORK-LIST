@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
 
 export default function AboutPage() {
   return (
@@ -17,6 +18,7 @@ export default function AboutPage() {
         unemployment, and build a strong connection between job seekers and the
         job market.
       </Typography>
+      <Footer/>
       </Box>
     </>
   );
