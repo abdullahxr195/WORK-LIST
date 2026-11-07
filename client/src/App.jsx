@@ -20,10 +20,12 @@ import JobPage from "./pages/JodPage/JobPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import Profile from "./components/profile/Profile";
 import AboutPage from "./pages/AboutPage/about.jsx";
+import { Toaster } from "react-hot-toast";
 function App() {
+
   return (
     <>
-    
+    <Toaster/>
       <Routes>
         <Route path="/" element={<LandingPage />} />
          {/* <Route path="/categories" element={<DisplayCategories />} /> */}

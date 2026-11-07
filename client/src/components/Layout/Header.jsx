@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
 import { useEffect } from "react";
-
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 export default function Header() {
   const navigate = useNavigate();
   const { currentUser, logout, authMe } = useAuth();
@@ -28,7 +28,7 @@ export default function Header() {
           }}
         >
        
-          <Typography variant="h4">WORK LIST</Typography>
+          <Typography variant="h4"><BusinessCenterIcon sx={{fontSize:50,mb:-1}}/> WORK LIST</Typography>
           <Box>
             <MenuList
               sx={{

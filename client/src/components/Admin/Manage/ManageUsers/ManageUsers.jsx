@@ -41,6 +41,8 @@ export default function ManageUsers() {
   /////////////////////////////////////////////////////////////////////////
   const [newData, setNewData] = useState({
     name: "",
+    email:"",
+    role:"",
   });
   /////////////////////////////////////////////////////////////////////////
   const hanleSaveEdits = () => {
@@ -50,7 +52,7 @@ export default function ManageUsers() {
   /////////////////////////////////////////////////////////////////////////
   return (
     <>
-      <Box sx={{ my: 3, mx: 2 }}>
+      <Box sx={{ my: 3, mx: 2 , flexDirection: "row"}}>
         <Typography>Manage Users </Typography>
         <TableContainer component={Paper}>
           <Table>

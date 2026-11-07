@@ -96,7 +96,7 @@ export const getCategoryByName = async (req, res) => {
 export const deleteCatergory = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteCatergory = await Category.findByIdAndDelete({ _id, id });
+    const deleteCatergory = await Category.findByIdAndDelete(id);
     if (!deleteCatergory) {
       return res.status(400).json({ message: "can not delete category" });
     }

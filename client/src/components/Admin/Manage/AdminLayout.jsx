@@ -6,7 +6,7 @@ import Header from "../../Layout/Header";
 export default function AdminLayout() {
   return <>
   
-  <Box sx={{ display: "flex", flexDirection: "row" }}>
+  <Box sx={{ display: "flex", flexDirection: "row",gap:3,justifyContent:"space-between" }}>
         <Box sx={{ flex: "1" }}>
           <Sidebar />
         </Box>
