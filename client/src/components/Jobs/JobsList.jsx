@@ -44,20 +44,20 @@ export default function jobsList() {
                 }}
               >
                 <CardContent >
-                  <Typography sx={{display:"flex" ,mb:3 ,borderRadius:2}} variant="h5"><PersonIcon sx={{fontSize:35,color:"Gray"}}/>Manager Name: {job.manager_name}</Typography>
+                  <Typography sx={{display:"flex" ,mb:3 ,borderRadius:2}} variant="h5"><PersonIcon sx={{fontSize:35,color:"DarkBlue"}}/>Manager Name: {job.manager_name}</Typography>
                    <Divider />
-                  <Typography sx={{display:"flex",}} variant="h5"><MonetizationOnIcon sx={{fontSize:35,color:"Green"}}/>Salary:{job.salary}</Typography>
-                  <Typography sx={{display:"flex" , marginLeft:53}} variant="h5"><AccessTimeTwoToneIcon sx={{fontSize:35,color:"Darkorange"}}/>Time:{job.time}</Typography>
+                  <Typography sx={{display:"flex",}} variant="h5"><MonetizationOnIcon sx={{fontSize:35,color:"DarkBlue"}}/>Salary:{job.salary}</Typography>
+                  <Typography sx={{display:"flex" , marginLeft:53}} variant="h5"><AccessTimeTwoToneIcon sx={{fontSize:35,color:"DarkBlue"}}/>Time:{job.time}</Typography>
                   <Typography sx={{display:"flex"}} variant="h5"><CallIcon sx={{fontSize:35,color:"DarkBlue"}}/>Manager Number:{job.manager_number}</Typography>
-                  <Typography sx={{display:"flex", marginLeft:53}} variant="h5"><FmdGoodTwoToneIcon sx={{fontSize:35,color:"blue"}}/>Location:{job.location}</Typography>
-                  <Typography sx={{display:"flex"}} variant="h5"><AccessibilityNewIcon sx={{fontSize:35,color:"red"}}/>Age:{job.age}</Typography>
-                  <Typography sx={{display:"flex", marginLeft:53}} variant="h5"><StarIcon sx={{fontSize:35,color:"Gold"}}/>Experience:{job.experience}</Typography>
+                  <Typography sx={{display:"flex", marginLeft:53}} variant="h5"><FmdGoodTwoToneIcon sx={{fontSize:35,color:"DarkBlue"}}/>Location:{job.location}</Typography>
+                  <Typography sx={{display:"flex"}} variant="h5"><AccessibilityNewIcon sx={{fontSize:35,color:"DarkBlue"}}/>Age:{job.age}</Typography>
+                  <Typography sx={{display:"flex", marginLeft:53}} variant="h5"><StarIcon sx={{fontSize:35,color:"DarkBlue"}}/>Experience:{job.experience}</Typography>
                   <Typography sx={{display:"flex"}} variant="h5">
-                   <GroupsIcon  sx={{fontSize:35,color:"Grey"}}/> Number Employees:{job.number_employees}
+                   <GroupsIcon  sx={{fontSize:35,color:"DarkBlue"}}/> Number Employees:{job.number_employees}
                   </Typography>
 
                   <Divider />
-                  <Typography  variant="h4"><CategoryIcon sx={{fontSize:35,color:"black"}}/>Category:{job.catId?.name}</Typography>
+                  <Typography  variant="h4"><CategoryIcon sx={{fontSize:35,color:"DarkBlue"}}/>Category:{job.catId?.name}</Typography>
                 </CardContent>
                 <CardActions
                   onClick={() => handleViewjob(`/job/$(prdId)`)}
